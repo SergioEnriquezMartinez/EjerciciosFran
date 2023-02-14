@@ -1,5 +1,6 @@
 package edu.alonso.daw.tema5.videoclub;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -122,6 +123,41 @@ public class VideoClub {
 		}
 		
 		return false;
+	}
+	
+	public List<Prestamo> getPresamosMorosos() {
+		List<Prestamo> lista = new ArrayList<>();
+		
+		LocalDate fechaActual = LocalDate.now();
+		for(int i = 0; i < listaPrestamos.size(); i++) {
+			if(fechaActual.isAfter(listaPrestamos.get(i).getFechaDevolucion())) {
+				lista.add(listaPrestamos.get(i));
+			}
+		}
+		
+		return lista;
+	}
+	
+	public boolean isPrestada(String codPelicula) {
+		for (Prestamo prestamo : listaPrestamos) {
+			if(prestamo.getPelicula().getCodigo().equals(codPelicula)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public void mostrarPeliculas() {
+		if(!listaPeliculas.isEmpty()) {			
+			System.out.println("Código\tTítulo");
+			for (Pelicula peli : listaPeliculas) {
+				System.out.print(peli.getCodigo());
+				System.out.println("\t" + peli.getTitulo());
+			}
+		} else {
+			System.out.println("No hay películas en el catálogo");
+		}
 	}
 
 }
