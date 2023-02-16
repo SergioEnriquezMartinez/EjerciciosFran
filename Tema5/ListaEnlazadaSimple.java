@@ -95,19 +95,58 @@ public class ListaEnlazadaSimple implements Lista {
 
 	@Override
 	public boolean containsInfo(Integer info) {
-		// TODO Auto-generated method stub
+		Nodo aux = this.primero;
+		while(aux != null) {
+			if(aux.getInfo().equals(info)) {
+				return true;
+			}
+			aux = aux.getSig();
+		}
+		
 		return false;
 	}
 
 	@Override
-	public int getElementAt(int index) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Integer getElementAt(int index) {
+		if(index <= numElementos && index >= 0 && !isEmpty()) {
+			Nodo aux = primero;
+			for (int i = 0; i < index; i++) {
+				aux = aux.getSig();
+			}
+			return aux.getInfo();
+		}
+		
+		return null;
 	}
 
 	@Override
 	public boolean removeByInfo(Integer info) {
-		// TODO Auto-generated method stub
+		if(!isEmpty()) {
+			if(primero.getInfo().equals(info)) {
+				// Borrado del primer elemento
+				Nodo borrar = primero;
+				primero = primero.getSig();
+				borrar.setSig(null);
+				borrar = null;
+				numElementos--;
+				return true;
+			} else {
+				Nodo ant = primero;
+				Nodo borrar = primero.getSig();
+				while(borrar != null) {
+					if(borrar.getInfo().equals(info)) {
+						ant.setSig(borrar.getSig());
+						borrar.setSig(null);
+						borrar = null;
+						numElementos--;
+						return true;
+					}
+					ant = ant.getSig();
+					borrar = borrar.getSig();
+				}
+			}
+		}
+
 		return false;
 	}
 
@@ -135,8 +174,10 @@ public class ListaEnlazadaSimple implements Lista {
 
 	@Override
 	public boolean clearList() {
-		// TODO Auto-generated method stub
-		return false;
+		while(!isEmpty()) {
+			removeAt(0);
+		}
+		return isEmpty();
 	}
 
 	@Override
