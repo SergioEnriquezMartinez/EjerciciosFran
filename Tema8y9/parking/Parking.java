@@ -30,7 +30,7 @@ public class Parking {
 		}
 	}
 	
-	private Ticket getTicket(String matricula) {
+	public Ticket getTicket(String matricula) {
 		if(matricula != null) {
 			for (Ticket ticket : tickets) {
 				if(ticket.getMatricula().equalsIgnoreCase(matricula)) {
@@ -59,6 +59,22 @@ public class Parking {
 	
 	public int getPlazasLibres() {
 		return capacidad - tickets.size();
+	}
+	
+	public int getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(int capacidad) {
+		this.capacidad = capacidad;
+	}
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
 	}
 
 }
