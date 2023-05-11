@@ -45,8 +45,10 @@ public class DBConnection {
 			this.conn = DriverManager.getConnection(URL, USER, PASS);
 			System.out.println("Conexión de BBDD creada con éxito!!");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Error al crear la conexión con la base de datos.");
+			System.err.printf("Mensaje: %s %n", e.getMessage());
+			System.err.printf("SQL Estado: %s %n", e.getSQLState());
+			System.err.printf("Código de error: %s %n", e.getErrorCode());
 		}
 	}
 	
@@ -61,8 +63,10 @@ public class DBConnection {
 			this.conn.close();
 			System.out.println("Conexión de BBDD cerrada con éxito!!");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("Error al crear la conexión con la base de datos.");
+			System.err.printf("Mensaje: %s %n", e.getMessage());
+			System.err.printf("SQL Estado: %s %n", e.getSQLState());
+			System.err.printf("Código de error: %s %n", e.getErrorCode());
 		} finally {
 			instance = null;
 		}

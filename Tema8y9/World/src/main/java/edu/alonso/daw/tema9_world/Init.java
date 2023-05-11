@@ -3,13 +3,27 @@ package edu.alonso.daw.tema9_world;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import edu.alonso.daw.tema9_world.model.City;
 import edu.alonso.daw.tema9_world.service.CityService;
 import edu.alonso.daw.tema9_world.utils.DBConnection;
 
 public class Init {
 
+	private static Logger logger = LogManager.getLogger(Init.class);
+	
 	public static void main(String[] args) {
+		
+		
+		
+		logger.debug("Example log from");
+		logger.info("Example log from");
+		logger.warn("Example log from");
+		logger.error("Example log from");
+		logger.fatal("Example log from");
+		
 
 		Scanner sc = new Scanner(System.in);
 		int opt = 0;
